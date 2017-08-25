@@ -8,6 +8,15 @@
       Month
       <input type="number" value="9" name="month" />
     </label>
+    <label>
+      Day
+      <input type="number" value="22" name="day" />
+    </label>
+    <fieldset>
+      <label>Bands
+        <input v-for="(band, index) in bands" :key="index" name="bands" placeholder="e.g. modest mouse" @keydown.prevent.enter="newBand" />
+      </label>
+    </fieldset>
     <button type="submit">Add concert</button>
   </form>
 </template>
@@ -15,20 +24,27 @@
 <script>
 export default {
   name: 'concert-form',
-  // data () {
-  //   return {
-  //     msg: 'Welcome to Your Vue.js App'
-  //   }
-  // },
+  data () {
+    return {
+      bands: ['']
+    }
+  },
   methods: {
+    newBand () {
+      this.bands.push('')
+    },
     addConcert (e) {
-      console.log(e)
       const { year, month, day, bands } = e.target.elements
       const elements = { year, month, day, bands }
-      // this.$emit('addConcert', { year, month, day, bands })
-      // const elements = e.target.elements
       const concert = Object.keys(elements).reduce((acc, key) => {
-        const value = elements[key] ? elements[key].value : null
+        let value
+        switch (key) {
+          case 'bands':
+            value = Array.from(elements[key], v => v.value)
+            break
+          default:
+            value = parseInt(elements[key].value)
+        }
         if (value) {
           acc[key] = value
         }

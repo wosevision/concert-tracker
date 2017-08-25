@@ -2,7 +2,15 @@
   <div id="app">
     <img src="./assets/logo.png">
     <ul>
-      <li v-for="(concert, index) in concerts" :key="index">{{ concert.bands }}</li>
+      <li v-for="(concert, index) in concerts" :key="index">
+        <strong>Year:</strong> {{ concert.year }}
+        |
+        <strong>Month:</strong> {{ concert.month }}
+        |
+        <strong>Day:</strong> {{ concert.day }}
+        |
+        <strong>Bands:</strong> {{ concert.bands }}
+      </li>
     </ul>
     <concert-form @addConcert="addConcert"></concert-form>
   </div>
