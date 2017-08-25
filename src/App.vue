@@ -10,6 +10,7 @@
 
 <script>
 import ConcertForm from './components/ConcertForm'
+import { ADD_CONCERT } from './store/mutations'
 
 export default {
   name: 'app',
@@ -23,12 +24,7 @@ export default {
   },
   methods: {
     addConcert ({ year, month, day, bands }) {
-      // const year = e.target.value
-      // console.log(e)
-      // if (year.trim()) {
-      this.$store.commit('addConcert', { year, month, day, bands })
-      // }
-      // e.target.value = ''
+      this.$store.commit(ADD_CONCERT, { year, month, day, bands })
     }
   }
 }
