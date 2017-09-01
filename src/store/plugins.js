@@ -1,9 +1,9 @@
-import { STORAGE_KEY } from './mutations'
+import { STORAGE_KEY } from '../api/concert-api'
 import createLogger from 'vuex/src/plugins/logger'
 
 const localStoragePlugin = store => {
-  store.subscribe((mutation, { todos }) => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+  store.subscribe((mutation, { concerts }) => {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(concerts))
   })
 }
 

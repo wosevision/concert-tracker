@@ -17,23 +17,22 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import ConcertForm from './components/ConcertForm'
-import { ADD_CONCERT } from './store/mutations'
 
 export default {
   name: 'app',
   components: {
     ConcertForm
   },
-  computed: {
-    concerts () {
-      return this.$store.state.concerts
-    }
-  },
-  methods: {
-    addConcert ({ year, month, day, bands }) {
-      this.$store.commit(ADD_CONCERT, { year, month, day, bands })
-    }
+  computed: mapGetters({
+    concerts: 'allConcerts'
+  }),
+  methods: mapActions([
+    'addConcert'
+  ]),
+  created () {
+    this.$store.dispatch('getAllConcerts')
   }
 }
 </script>
