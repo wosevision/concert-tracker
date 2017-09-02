@@ -1,27 +1,7 @@
-import concertApi from '../../api/concert-api'
-import * as types from '../types'
-
-// initial state
-const state = {
-  all: []
-}
-
-// getters
-const getters = {
-  allConcerts: state => state.all
-}
-
-// actions
-const actions = {
-  getAllConcerts ({ commit }) {
-    concertApi.getConcerts(concerts => {
-      commit(types.RECEIVE_CONCERTS, { concerts })
-    })
-  }
-}
+import * as types from './mutation-types'
 
 // mutations
-const mutations = {
+export default {
   [types.RECEIVE_CONCERTS] (state, { concerts }) {
     state.all = concerts
   },
@@ -38,11 +18,4 @@ const mutations = {
     const { year, month, day, bands } = value
     Object.assign(concert, { year, month, day, bands })
   }
-}
-
-export default {
-  state,
-  getters,
-  actions,
-  mutations
 }
