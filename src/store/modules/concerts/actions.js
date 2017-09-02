@@ -1,18 +1,21 @@
 import concertApi from '../../../api/concert-api'
-import * as types from './mutation-types'
+import * as mutations from './mutations'
+
+export const getAllConcerts = 'getAllConcerts'
+export const addConcert = 'addConcert'
 
 // actions
 export default {
 
-  getAllConcerts ({ commit }) {
+  [getAllConcerts] ({ commit }) {
     concertApi.getConcerts(concerts => {
-      commit(types.RECEIVE_CONCERTS, { concerts })
+      commit(mutations.RECEIVE_CONCERTS, { concerts })
     })
   },
 
-  addConcert ({ commit }, { year, month, day, bands }) {
+  [addConcert] ({ commit }, { year, month, day, bands }) {
     if (year && month && day && bands) {
-      commit(types.ADD_CONCERT, { year, month, day, bands })
+      commit(mutations.ADD_CONCERT, { year, month, day, bands })
     }
   }
 

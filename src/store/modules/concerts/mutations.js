@@ -1,20 +1,23 @@
-import * as types from './mutation-types'
+export const RECEIVE_CONCERTS = 'RECEIVE_CONCERTS'
+export const ADD_CONCERT = 'ADD_CONCERT'
+export const DELETE_CONCERT = 'DELETE_CONCERT'
+export const EDIT_CONCERT = 'EDIT_CONCERT'
 
 // mutations
 export default {
-  [types.RECEIVE_CONCERTS] (state, { concerts }) {
+  [RECEIVE_CONCERTS] (state, { concerts }) {
     state.all = concerts
   },
 
-  [types.ADD_CONCERT] (state, { year, month, day, bands }) {
+  [ADD_CONCERT] (state, { year, month, day, bands }) {
     state.all.push({ year, month, day, bands })
   },
 
-  [types.DELETE_CONCERT] (state, { concert }) {
+  [DELETE_CONCERT] (state, { concert }) {
     state.all.splice(state.all.indexOf(concert), 1)
   },
 
-  [types.EDIT_CONCERT] (state, { concert, value }) {
+  [EDIT_CONCERT] (state, { concert, value }) {
     const { year, month, day, bands } = value
     Object.assign(concert, { year, month, day, bands })
   }

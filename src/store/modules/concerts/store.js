@@ -1,6 +1,8 @@
 import mutations from './mutations'
 import actions from './actions'
 
+export const allConcerts = 'allConcerts'
+
 // initial state
 const state = {
   all: []
@@ -8,7 +10,7 @@ const state = {
 
 // getters
 const getters = {
-  allConcerts: state => state.all
+  [allConcerts]: state => state.all
 }
 
 export default {

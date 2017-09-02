@@ -20,19 +20,22 @@
 import { mapGetters, mapActions } from 'vuex'
 import ConcertForm from './components/ConcertForm'
 
+import * as actions from './store/modules/concerts/actions'
+import * as getters from './store/modules/concerts/store'
+
 export default {
   name: 'app',
   components: {
     ConcertForm
   },
   computed: mapGetters({
-    concerts: 'allConcerts'
+    concerts: getters.allConcerts
   }),
   methods: mapActions([
-    'addConcert'
+    actions.addConcert
   ]),
   created () {
-    this.$store.dispatch('getAllConcerts')
+    this.$store.dispatch(actions.getAllConcerts)
   }
 }
 </script>
