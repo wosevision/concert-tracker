@@ -12,25 +12,26 @@
       Day
       <input type="number" value="22" name="day" />
     </label>
-    <fieldset>
-      <label>Bands
-        <input v-for="(band, index) in bands" :key="index" name="bands" placeholder="e.g. modest mouse" @keydown.prevent.enter="newBand" />
-      </label>
-    </fieldset>
+    <concert-form-bands :bands="bands" @addBand="addBand"></concert-form-bands>
     <button type="submit">Add concert</button>
   </form>
 </template>
 
 <script>
+import ConcertFormBands from './ConcertFormBands'
+
 export default {
   name: 'concert-form',
+  components: {
+    ConcertFormBands
+  },
   data () {
     return {
       bands: ['']
     }
   },
   methods: {
-    newBand () {
+    addBand () {
       this.bands.push('')
     },
     addConcert (e) {
